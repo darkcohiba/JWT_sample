@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+const API = 'http://localhost:3000/api/v1/';
 
 function App() {
   const [username, setUsername] = useState('');
@@ -14,13 +15,30 @@ function App() {
 
   function submitRegistration(e){
     e.preventDefault();
-    
+
+    fetch(`${API}users`,{
+      method: 'POST',
+      headers: {
+        Accepts: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        user: {
+          username,
+          email,
+          password
+        }
+      })  
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+    })
   }
   return (
     <div className="App">
       <h1>Create New User</h1>
-      {/* onSubmit={submitRegistration} */}
-      <form > 
+      <form onSubmit={submitRegistration}> 
         <div>
           Username:{' '}
           <input
