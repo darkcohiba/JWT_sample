@@ -11,6 +11,11 @@ function App() {
 
   const [loggedinUsername, setLoggedInUsername] = useState('');
   const [loggedinEmail, setLoggedInEmail] = useState('');
+
+  function submitRegistration(e){
+    e.preventDefault();
+    
+  }
   return (
     <div className="App">
       <h1>Create New User</h1>
